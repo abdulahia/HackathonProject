@@ -1,2 +1,2 @@
 # HackathonProject
-https://trello.com/b/iqOMUEWT/hackathon-project
+Kanban board: https://trello.com/b/iqOMUEWT/hackathon-project
