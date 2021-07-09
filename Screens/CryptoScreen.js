@@ -14,7 +14,6 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
-
 export default function CryptoScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.container}>
@@ -25,24 +24,20 @@ export default function CryptoScreen({ navigation }) {
   );
 }
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#61EEFE",
   },
-  header: {
-    flex: 2,
-    justifyContent: "center",
+  pbackground: {
+    backgroundColor: "#ffff",
+    width: "95%",
+    height: 700,
+    bottom: 40,
+    borderRadius: 20,
     alignItems: "center",
-  },
-  footer: {
-    flex: 1,
-    backgroundColor: "#ffffff",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    paddingVertical: 50,
-    paddingHorizontal: 30,
-    bottom: "0%",
+    justifyContent: "center",
   },
   text: {
     textAlignVertical: "center",
