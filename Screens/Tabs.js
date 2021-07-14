@@ -77,12 +77,12 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
+                  tintColor: focused ? "#62c7fe" : "#748c94",
                 }}
               />
               <Text
                 style={{
-                  color: focused ? "#e32f45" : "#748c94",
+                  color: focused ? "#62c7fe" : "#748c94",
                   fontSize: 12,
                 }}
               >
@@ -110,7 +110,7 @@ export default function Tabs() {
           tabBarButton: (props) => <CustomTabBarButton {...props} />,
         }}
       /> */}
-            <Tab.Screen
+      <Tab.Screen
         name="CreditScreen"
         component={CreditScreen}
         options={{
@@ -128,12 +128,12 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
+                  tintColor: focused ? "#62c7fe" : "#748c94",
                 }}
               />
               <Text
                 style={{
-                  color: focused ? "#e32f45" : "#748c94",
+                  color: focused ? "#62c7fe" : "#748c94",
                   fontSize: 12,
                 }}
               >
@@ -161,12 +161,12 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
+                  tintColor: focused ? "#62c7fe" : "#748c94",
                 }}
               />
               <Text
                 style={{
-                  color: focused ? "#e32f45" : "#748c94",
+                  color: focused ? "#62c7fe" : "#748c94",
                   fontSize: 12,
                 }}
               >
@@ -176,7 +176,7 @@ export default function Tabs() {
           ),
         }}
       />
-            <Tab.Screen
+      <Tab.Screen
         name="BudgetScreen"
         component={BudgetScreen}
         options={{
@@ -194,12 +194,12 @@ export default function Tabs() {
                 style={{
                   width: 25,
                   height: 25,
-                  tintColor: focused ? "#e32f45" : "#748c94",
+                  tintColor: focused ? "#62c7fe" : "#748c94",
                 }}
               />
               <Text
                 style={{
-                  color: focused ? "#e32f45" : "#748c94",
+                  color: focused ? "#62c7fe" : "#748c94",
                   fontSize: 12,
                 }}
               >

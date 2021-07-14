@@ -1,10 +1,9 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import YoutubeScreen from "./YoutubeScreen";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import JourneyScreen from './JourneyScreen';
-import {StimulatorScreen} from './StimulatorScreen';
+import JourneyScreen from "./JourneyScreen";
+import { StimulatorScreen } from "./StimulatorScreen";
 import {
   View,
   Text,
@@ -85,7 +84,7 @@ function Credit({ navigation }) {
             </TouchableOpacity>
           </View>
           <View style={styles.stimilator}>
-          <Image
+            <Image
               source={require("../assets/stim.png")}
               resizeMode="contain"
               style={{
@@ -204,10 +203,10 @@ export default function CreditScreen({ navigation }) {
   return (
     <Tab.Navigator
       tabBarOptions={{
-        showLabel:false,
-        activeTintColor : 'red',
-        tabStyle: { backgroundColor : '#61EEFE',tabBarVisible:true,},
-        style: { backgroundColor: '#61EEFE' },
+        showLabel: false,
+        activeTintColor: "red",
+        tabStyle: { backgroundColor: "#61EEFE", tabBarVisible: true },
+        style: { backgroundColor: "#61EEFE" },
       }}
     >
       <Tab.Screen name="credit" component={Credit} />

@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
 import MaterialIcons from "react-native-vector-icons";
 import * as Animatable from "react-native-animatable";
+import CreditScreen from "./CreditScreen";
 import {
   View,
   Text,
@@ -14,8 +15,13 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+console.disableYellowBox = true;
 
-export default function HomeScreen({ navigation }) {
+interface CreditScreenProps {
+  navigation: any;
+}
+export default function HomeScreen(props: CreditScreenProps) {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.view}>

@@ -14,7 +14,6 @@ import {
   FlatList,
   Button,
   Alert,
-  
 } from "react-native";
 import LinearGradient from "react-native-linear-gradient";
 import {
@@ -26,57 +25,72 @@ import {
   List,
 } from "native-base";
 import Animated from "react-native-reanimated";
-import {useSelector, useDispatch} from 'react-redux';
-import {deleteTransaction} from '../scr/store/actions/transactionAction';
+import { useSelector, useDispatch } from "react-redux";
+import { deleteTransaction } from "../scr/store/actions/transactionAction";
 
-
-
-function Item({title,id,price}){
+function Item({ title, id, price }) {
   const dispatch = useDispatch();
-  return(
-    <View style={{
-      left:5,
+  return (
+    <View
+      style={{
+        left: 5,
         marginVertical: 0,
         paddingHorizontal: 0,
-        paddingVertical:20,
-      }}>
-    <List>
-    <List.Item>
-      <Checkbox
-          onPress={() => {
-            dispatch(deleteTransaction(id));
-          }}
-          color="#ff4500"
-          checked={true}
+        paddingVertical: 20,
+      }}
+    >
+      <List>
+        <List.Item>
+          <Checkbox
+            onPress={() => {
+              dispatch(deleteTransaction(id));
+            }}
+            color="#ff4500"
+            checked={true}
           />
-      <Text style={{
-        fontSize:17, fontWeight:"400",marginLeft: 10, color: true? "#009BFC":"#FF4500"}}>
-      {title}
-      </Text>
-      <View style={{
-        flex: 1,
-        justifyContent:'center',
-        left: '90%'
-      }}>
-      <Text style={{
-        fontSize:16, fontWeight:"500", color: price > 0? '#009BFC' : '#FF4500', alignSelf:"right"
-      }}>
-           {price > 0 ? `$${price}` : `-$${Math.abs(price)}`}
-        </Text>
-      </View>
-    </List.Item>
-    </List>
+          <Text
+            style={{
+              fontSize: 17,
+              fontWeight: "400",
+              marginLeft: 10,
+              color: true ? "#62c7fe" : "#FF4500",
+            }}
+          >
+            {title}
+          </Text>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: "center",
+              left: "90%",
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 16,
+                fontWeight: "500",
+                color: price > 0 ? "green" : "#FF4500",
+                alignSelf: "right",
+              }}
+            >
+              {price > 0 ? `$${price}` : `-$${Math.abs(price)}`}
+            </Text>
+          </View>
+        </List.Item>
+      </List>
     </View>
-  )
+  );
 }
 
-
 function BudgetScreen({ navigation }) {
-  const {transactions} = useSelector((state) => state.transactions);
-  const prices = transactions.map(transactions => transactions.price)
-const totalPrice = prices.reduce((prev, cur) => (prev +=cur), 0).toFixed(2)
-  const expanse = prices.filter(price =>price<0).reduce((prev,cur) => (prev +=cur), 0) *-1;
-  
+  const { transactions } = useSelector((state) => state.transactions);
+  const prices = transactions.map((transactions) => transactions.price);
+  const totalPrice = prices.reduce((prev, cur) => (prev += cur), 0).toFixed(2);
+  const expanse =
+    prices
+      .filter((price) => price < 0)
+      .reduce((prev, cur) => (prev += cur), 0) * -1;
+
   return (
     <NativeBaseProvider>
       <SafeAreaView style={styles.container}>
@@ -166,7 +180,7 @@ const totalPrice = prices.reduce((prev, cur) => (prev +=cur), 0).toFixed(2)
                     color: "white",
                   }}
                 >
-                  Balance
+                  Expenses
                 </Text>
                 <Text
                   style={{
@@ -180,26 +194,24 @@ const totalPrice = prices.reduce((prev, cur) => (prev +=cur), 0).toFixed(2)
                 </Text>
               </View>
             </View>
-            <View>
-            </View>
-            <View style = {{
-              top:30,
-              // marginVertical:3,
-              width:"95%",
-              height:"55%",
-              backgroundColor:"white"
-            }}>
-            <View style={{
-              
-            }}>
-            <FlatList
-            data = {transactions}
-            renderItem={({item}) => (
-              <Item title= {item.title} price = {item.price} id={item.id}/>
-            )}
-            keyExtractor={(item) => item.id.toString()}
-            />
-            </View>
+            <View></View>
+            <View
+              style={{
+                top: 30,
+                width: "95%",
+                height: "55%",
+                backgroundColor: "white",
+              }}
+            >
+              <View style={{}}>
+                <FlatList
+                  data={transactions}
+                  renderItem={({ item }) => (
+                    <Item title={item.title} price={item.price} id={item.id} />
+                  )}
+                  keyExtractor={(item) => item.id.toString()}
+                />
+              </View>
             </View>
           </View>
         </View>
@@ -210,7 +222,7 @@ const totalPrice = prices.reduce((prev, cur) => (prev +=cur), 0).toFixed(2)
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function CreditScreen({ navigation }) {
+export default function Budgeting({ navigation }) {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -252,7 +264,6 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     padding: 22,
     backgroundColor: "#62c7fe",
-    // justifyContent:'center',
     alignItems: "center",
   },
 });

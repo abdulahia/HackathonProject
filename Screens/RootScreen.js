@@ -7,9 +7,9 @@ import HomeScreen from "./HomeScreen";
 import CreditScreen from "./CreditScreen";
 import CryptoScreen from "./CryptoScreen";
 import BudgetScreen from "./BudgetScreen";
+import AddScreen from "./AddScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Tabs from "./Tabs";
-
 const RootStack = createStackNavigator();
 function Home() {
   return <Tabs />;
@@ -23,6 +23,7 @@ export default function RootStackScreen() {
       <RootStack.Screen name="CreditScreen" component={CreditScreen} />
       <RootStack.Screen name="CryptoScreen" component={CryptoScreen} />
       <RootStack.Screen name="BudgetScreen" component={BudgetScreen} />
+      <RootStack.Screen name="AddScreen" component={AddScreen} />
     </RootStack.Navigator>
   );
 }
