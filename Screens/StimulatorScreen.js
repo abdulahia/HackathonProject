@@ -48,7 +48,7 @@ export class StimulatorScreen extends Component {
         label: "$10,000",
         accessibilityLabel: "Tap here for cranberries",
       },
-      { key: credit++, label: "$20,000" },
+      { key: credit - 14, label: "$20,000" },
     ];
     const mortgage = [
       { key: credit++, section: true, label: "Loan Amount" },
@@ -59,18 +59,18 @@ export class StimulatorScreen extends Component {
         label: "$200,000",
         accessibilityLabel: "Tap here for cranberries",
       },
-      { key: credit++, label: "$250,000" },
+      { key: credit + 6, label: "$250,000" },
     ];
     const declined = [
       { key: credit++, section: true, label: "Loan Amount" },
-      { key: credit - 5, label: "$100,00" },
-      { key: credit - 5, label: "$150,000" },
+      { key: credit - 8, label: "$100,00" },
+      { key: credit - 8, label: "$150,000" },
       {
-        key: credit - 5,
+        key: credit - 8,
         label: "$200,000",
         accessibilityLabel: "Tap here for cranberries",
       },
-      { key: credit++, label: "$250,000" },
+      { key: credit - 8, label: "$250,000" },
     ];
     return (
       <SafeAreaView style={styles.container}>

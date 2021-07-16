@@ -168,6 +168,7 @@ function Credit({ navigation }) {
             }}
             width={Dimensions.get("window").width - 21} // from react-native
             height={250}
+            withDots={true}
             chartConfig={{
               backgroundColor: "#ffff",
               backgroundGradientFrom: "#ffff",
@@ -179,8 +180,8 @@ function Credit({ navigation }) {
                 borderRadius: 0,
               },
               propsForDots: {
-                r: "8",
-                strokeWidth: "4",
+                r: "6",
+                strokeWidth: "2",
                 stroke: "#ffa726",
               },
             }}

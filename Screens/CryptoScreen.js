@@ -1,9 +1,13 @@
-import * as React from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { LinearGradient } from "expo-linear-gradient";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import TransactionScreen from "./TransactionScreen";
+import BitcointransactionScreen from "./BitcointransactionScreen";
+import YoutubePlayer from "react-native-youtube-iframe";
+import EthereumtransactionScreen from "./EthereumtransactionScreen";
+import { useSelector, useDispatch } from "react-redux";
+
 import {
   View,
   Text,
@@ -16,8 +20,28 @@ import {
   FlatList,
 } from "react-native";
 import DummyData from "./DummyData";
-import { COLORS, SIZES, FONTS } from "./Theme";
 function CryptoScreen({ navigation }) {
+  const [worth, setWorth] = useState(0);
+
+  const [playing, setPlaying] = useState(false);
+  const onStateChange = useCallback((state) => {
+    if (state === "ended") {
+      setPlaying(false);
+      Alert.alert("video has finished playing!");
+    }
+  }, []);
+
+  const togglePlaying = useCallback(() => {
+    setPlaying((prev) => !prev);
+  }, []);
+  const { transactions } = useSelector((state) => state.transactions);
+  const prices = transactions.map((transactions) => transactions.price);
+  const { values } = useSelector((state) => state.values);
+  const totalPrice = prices.reduce((prev, cur) => (prev += cur), 0).toFixed(2);
+  const value =
+    prices
+      .filter((price) => price < 0)
+      .reduce((prev, cur) => (prev += cur), 360) * -1;
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.view}>
@@ -37,38 +61,59 @@ function CryptoScreen({ navigation }) {
             <Text
               style={{
                 fontSize: 17,
+                right: 90,
                 color: "#fff",
                 fontWeight: "1100",
                 top: 10,
               }}
             >
-              Total Investment Value
+              Available Balance
             </Text>
             <Text
               style={{
                 top: 25,
                 color: "white",
+                right: 90,
                 fontSize: 25,
                 fontWeight: "bold",
               }}
             >
-              ${DummyData.portfolio.balance}
-            </Text>
-            <Text style={{ top: 30, color: "green" }}>
-              {DummyData.portfolio.changes}
+              ${totalPrice}
             </Text>
             <Text
               style={{
+                bottom: 40,
+                left: 120,
+                color: "#fff",
+                fontWeight: "1100",
+                fontSize: 17,
+              }}
+            >
+              Portfolio value
+            </Text>
+            <Text
+              style={{
+                bottom: 25,
                 color: "white",
+                left: 120,
+                fontSize: 25,
+                fontWeight: "bold",
+              }}
+            >
+              {" "}
+              ${value}
+            </Text>
+            {/* <Text
+              style={{
+                color: "grey",
                 fontWeight: "bold",
                 top: 50,
                 right: 100,
-                fontWeight: "1100",
                 fontSize: 20,
               }}
             >
               Available Crypto's:
-            </Text>
+            </Text> */}
           </View>
           <TouchableOpacity
             style={{
@@ -77,9 +122,9 @@ function CryptoScreen({ navigation }) {
               width: 170,
               height: 150,
               right: 101,
-              top: 50,
+              top: 190,
             }}
-            onPress={() => navigation.navigate("TransactionScreen")}
+            onPress={() => navigation.navigate("BitcointransactionScreen")}
           >
             <View style={styles.crypto}>
               <Image
@@ -131,7 +176,7 @@ function CryptoScreen({ navigation }) {
               <Text
                 style={{
                   fontSize: 15,
-                  color: "green",
+                  color: "red",
                   position: " absolute",
                   top: 55,
                   left: 20,
@@ -147,9 +192,9 @@ function CryptoScreen({ navigation }) {
               width: 170,
               height: 150,
               left: 102,
-              bottom: 100,
+              top: 40,
             }}
-            onPress={() => navigation.navigate("TransactionScreen")}
+            onPress={() => navigation.navigate("EthereumtransactionScreen")}
           >
             <View style={styles.crypto2}>
               <Image
@@ -211,6 +256,28 @@ function CryptoScreen({ navigation }) {
               </Text>
             </View>
           </TouchableOpacity>
+          <View style={styles.LearnBox}>
+            <Text
+              style={{
+                top: 25,
+                left: 60,
+                fontWeight: "bold",
+                color: "white",
+                fontSize: 20,
+              }}
+            >
+              Learn About Crypto Below!
+            </Text>
+            <View style={{ alignItems: "center", top: "15%" }}>
+              <YoutubePlayer
+                height={360}
+                width={360}
+                play={playing}
+                playList={"PLU52pNodXIGdM6XDgHVG7DsPytlsrR_6b"}
+                onChangeState={onStateChange}
+              />
+            </View>
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -229,7 +296,14 @@ export default function Crypto({ navigation }) {
       }}
     >
       <Tab.Screen name="CryptoScreen" component={CryptoScreen} />
-      <Tab.Screen name="TransactionScreen" component={TransactionScreen} />
+      <Tab.Screen
+        name="BitcointransactionScreen"
+        component={BitcointransactionScreen}
+      />
+      <Tab.Screen
+        name="EthereumtransactionScreen"
+        component={EthereumtransactionScreen}
+      />
     </Tab.Navigator>
   );
 }
@@ -286,5 +360,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#62c7fe",
     alignItems: "center",
     position: "absolute",
+  },
+  LearnBox: {
+    height: "40%",
+    width: "95%",
+    top: 50,
+    backgroundColor: "grey",
+    borderRadius: 15,
   },
 });

@@ -17,6 +17,16 @@ import {
 import YoutubePlayer from "react-native-youtube-iframe";
 
 export default function JourneyScreen({ navigation }) {
+  let tips = Array(
+    "Review Your Credit Report",
+    "Set Up Payment Reminders",
+    "Pay More Than Once in a Billing Cycle",
+    "Contact Your Creditors",
+    "Apply for New Credit Sparingly",
+    "Don’t Close Unused Credit Card Accounts",
+    "Pay Attention to Credit Utilization"
+  );
+  var tip = tips[Math.floor(Math.random() * tips.length)];
   const [playing, setPlaying] = useState(false);
   const onStateChange = useCallback((state) => {
     if (state === "ended") {
@@ -34,7 +44,7 @@ export default function JourneyScreen({ navigation }) {
         <View style={styles.pbackground}>
           <Text
             style={{
-              bottom: 100 - 20,
+              bottom: 65,
               fontWeight: "bold",
               color: "#62c7fe",
               fontSize: 20,
@@ -46,7 +56,7 @@ export default function JourneyScreen({ navigation }) {
             style={{
               width: 50,
               height: 50,
-              bottom: 135 - 20,
+              bottom: 100,
               right: 150,
             }}
           >
@@ -97,6 +107,25 @@ export default function JourneyScreen({ navigation }) {
                 onPress={togglePlaying}
               />
             </View>
+          </View>
+          <View
+            style={{
+              top: 40,
+              width: 370,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Text
+              style={{
+                fontWeight: "bold",
+                fontSize: 15,
+                top: 25,
+                color: "#62c7fe",
+              }}
+            >
+              Tip: {tip}
+            </Text>
           </View>
         </View>
       </View>
